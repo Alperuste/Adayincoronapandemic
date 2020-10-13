@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        MakeSingleton();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +21,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void MakeSingleton()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }
