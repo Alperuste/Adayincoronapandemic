@@ -5,10 +5,7 @@ using UnityEngine;
 public class GameplayManager : MonoBehaviour
 {
     public int CoronaRisk;
-    public string textTitle;
-    public string textQuestion;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +15,7 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     #region DailyActivities
@@ -26,15 +23,21 @@ public class GameplayManager : MonoBehaviour
 
     public void GoToHome()
     {
-
+        string strTitle = "Home";
+        string strQuestion = "Home";
+        ScreenManager.instance.OpenQuestionArea(strTitle,strQuestion);
     }
     public void GoToUni()
     {
-
+        string strTitle = "Uni";
+        string strQuestion = "Uni";
+        ScreenManager.instance.OpenQuestionArea(strTitle, strQuestion);
     }
     public void GoToCafe()
     {
-
+        string strTitle = "Cafe";
+        string strQuestion = "Cafe";
+        ScreenManager.instance.OpenQuestionArea(strTitle, strQuestion);
     }
     #endregion
 
@@ -43,7 +46,7 @@ public class GameplayManager : MonoBehaviour
 
     public void Walk()
     {
-
+        
     }
 
     public void PublicTransport()
