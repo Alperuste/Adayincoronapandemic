@@ -11,6 +11,14 @@ public class ScreenManager : MonoBehaviour
     public Text panelTextTitle;
     public Text panelTextQuestion;
 
+    public GameObject panelMask;
+
+    public GameObject panelWashHands;
+
+    public GameObject panelSanitizer;
+
+    public Slider CoronaSlider;
+
     private void Awake()
     {
         if (instance != null)
@@ -32,7 +40,12 @@ public class ScreenManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+     
+    }
+
+    public void ChangeCoronaMeter(int CoronaRisk)
+    {
+        CoronaSlider.value = CoronaRisk;
     }
 
     public void GoToMainMenu()
@@ -56,5 +69,35 @@ public class ScreenManager : MonoBehaviour
     public void CloseTheQuestionArea()
     {
         panelQuestion.SetActive(false);
+    }
+
+    public void OpenMaskPanel()
+    {
+        panelMask.SetActive(true);
+    }
+
+    public void CloseMaskPanel()
+    {
+        panelMask.SetActive(false);
+    }
+
+    public void OpenWashHandsPanel()
+    {
+        panelWashHands.SetActive(true);
+    }
+
+    public void CloseWashHandsPanel()
+    {
+        panelWashHands.SetActive(false);
+    }
+
+    public void OpenSanitizerPanel()
+    {
+        panelSanitizer.SetActive(true);
+    }
+
+    public void CloseSanitizerPanel()
+    {
+        panelSanitizer.SetActive(false);
     }
 }
