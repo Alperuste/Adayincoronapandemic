@@ -19,6 +19,9 @@ public class ScreenManager : MonoBehaviour
 
     public Slider CoronaSlider;
 
+    IEnumerator Testcoroutine;
+
+
     private void Awake()
     {
         if (instance != null)
@@ -83,7 +86,16 @@ public class ScreenManager : MonoBehaviour
 
     public void OpenWashHandsPanel()
     {
-        panelWashHands.SetActive(true);
+        if (panelQuestion.activeInHierarchy == true || panelMask.activeInHierarchy == true)
+        {
+            Testcoroutine = CROpenWashHandsanel(1f);
+            StartCoroutine(Testcoroutine);
+        }
+        else
+        {
+            panelWashHands.SetActive(true);
+            StopCoroutine(Testcoroutine);
+        }
     }
 
     public void CloseWashHandsPanel()
@@ -93,11 +105,33 @@ public class ScreenManager : MonoBehaviour
 
     public void OpenSanitizerPanel()
     {
-        panelSanitizer.SetActive(true);
+        if (panelQuestion.activeInHierarchy == true || panelMask.activeInHierarchy == true)
+        {
+            Testcoroutine = CROpenSanitizerPanel(1f);
+            StartCoroutine(Testcoroutine);
+        }
+        else
+        {
+            panelSanitizer.SetActive(true);
+            StopCoroutine(Testcoroutine);
+        }
     }
 
     public void CloseSanitizerPanel()
     {
         panelSanitizer.SetActive(false);
+    }
+
+    //CoRoutines
+    private IEnumerator CROpenWashHandsanel(float waitTime)
+    {
+            yield return new WaitForSeconds(waitTime);
+            OpenWashHandsPanel();
+    }
+
+    private IEnumerator CROpenSanitizerPanel(float waitTime)
+    {
+            yield return new WaitForSeconds(waitTime);
+            OpenSanitizerPanel();
     }
 }
