@@ -2336,6 +2336,8 @@ MonoBehaviour:
   ShoppingCenter: {fileID: 439313771}
   KadriorgPark: {fileID: 1472970781}
   OldTown: {fileID: 932828671}
+  numberOfPlacesVisited: 0
+  map: {fileID: 356921111}
 --- !u!1 &638227624
 GameObject:
   m_ObjectHideFlags: 0

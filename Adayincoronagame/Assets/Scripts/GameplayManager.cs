@@ -18,6 +18,10 @@ public class GameplayManager : MonoBehaviour
     public GameObject ShoppingCenter;
     public GameObject KadriorgPark;
     public GameObject OldTown;
+    //night mode
+    public int numberOfPlacesVisited = 0;
+    public SpriteRenderer Map;
+    private bool isNightMode = false;
 
 
     // Start is called before the first frame update
@@ -29,8 +33,12 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (numberOfPlacesVisited == 4)
+        {
+            SwitchToNightMode();
+        }
     }
+
 
     public void MoveCharacter(GameObject target)
     {
@@ -55,19 +63,32 @@ public class GameplayManager : MonoBehaviour
         sm.ChangeCoronaMeter(CoronaRisk);
     }
 
+
     #region DailyActivities
     // Daily Activities
 
     public void GoToHome()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Home";
         string Question = "It's time to go back home, I need some rest!";
+
+        if (isNightMode)
+        {
+            EndGame();
+        }
+
         sm.OpenQuestionArea(Title,Question);
         MoveCharacter(Home);
         sm.OpenWashHandsPanel();
+
+       
     }
     public void GoToUni()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to University";
         string Question = "It's time to go to university, I need to remember that I'm still a student.";
         sm.OpenQuestionArea(Title, Question);
@@ -76,6 +97,8 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToCafe()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Cafe";
         string Question = "Who feels that it's coffe o'clock! Maybe I can also get some cookies as well.";
         sm.OpenQuestionArea(Title, Question);
@@ -85,6 +108,8 @@ public class GameplayManager : MonoBehaviour
 
     public void GoToBar()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Bar";
         string Question = "My classmates were talking about a beer pong tournament at this bar, let’s check what is going on.";
         sm.OpenQuestionArea(Title, Question);
@@ -93,6 +118,8 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToFriendsPlace()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Friend's Place";
         string Question = "Long time no see my friend!";
         sm.OpenQuestionArea(Title, Question);
@@ -101,6 +128,8 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToGroceryStore()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Grocery Store";
         string Question = "I need to buy some groceries for home, nothing left to eat.";
         sm.OpenQuestionArea(Title, Question);
@@ -109,6 +138,8 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToShoppingCenter()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Shopping Center";
         string Question = " Let’s see if they have anything on discount, I don’t need anything but maybe I can buy a new t-shirt!";
         sm.OpenQuestionArea(Title, Question);
@@ -117,6 +148,8 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToKadriorgPark()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Kadriorg Park";
         string Question = "Ahh Kadriorg Park, one of my favorite places to walk around and have some fresh air.";
         sm.OpenQuestionArea(Title, Question);
@@ -124,6 +157,8 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToOldTown()
     {
+        numberOfPlacesVisited++;
+
         string Title = "Go to Old Town";
         string Question = "My dear old town! That's one of the reasons that I choose to study in Tallinn!";
         sm.OpenQuestionArea(Title, Question);
@@ -199,6 +234,18 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     // Day/Night Shift
+    public void SwitchToNightMode()
+    {
+        isNightMode = true;
+        Map.material.color = Color.grey; 
+    }
 
+    public void EndGame()
+    {
+        Debug.Log("from end game");
+
+        //ScreenManager.instance = null;
+        Application.Quit();
+    }
 
 }
