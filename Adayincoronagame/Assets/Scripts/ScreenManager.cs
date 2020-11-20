@@ -60,6 +60,10 @@ public class ScreenManager : MonoBehaviour
     {
         SceneManager.LoadScene("Gameplay");
     }
+    public void GoToIntro()
+    {
+        SceneManager.LoadScene("Intro");
+    }
 
     public void OpenQuestionArea(string title, string question)
     {
