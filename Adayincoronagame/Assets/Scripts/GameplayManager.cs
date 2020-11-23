@@ -14,7 +14,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject Cafe;
     public GameObject Bar;
     public GameObject FriendsPlace;
-    public GameObject GroceryStore;
+    public GameObject Cinema;
     public GameObject ShoppingCenter;
     public GameObject KadriorgPark;
     public GameObject OldTown;
@@ -38,6 +38,7 @@ public class GameplayManager : MonoBehaviour
     {
         Vector2 start = player.transform.position;
         Vector2 end = target.transform.position;
+
         player.transform.position = Vector2.Lerp(start, end, 1);
 
         //Play sound effects according to style (Bus/taxi/walk)
@@ -46,7 +47,7 @@ public class GameplayManager : MonoBehaviour
         {
             sm.OpenWashHandsPanel();
         }
-        else if (currentTarget == University || currentTarget == Cafe || currentTarget == Bar || currentTarget == GroceryStore || currentTarget == ShoppingCenter)
+        else if (currentTarget == University || currentTarget == Cafe || currentTarget == Bar || currentTarget == Cinema || currentTarget == ShoppingCenter)
         {
             sm.OpenSanitizerPanel();
         }
@@ -110,12 +111,12 @@ public class GameplayManager : MonoBehaviour
         currentTarget = FriendsPlace;
         //sm.OpenWashHandsPanel();
     }
-    public void GoToGroceryStore()
+    public void GoToCinema()
     {
-        string Title = "Go to Grocery Store";
-        string Question = "I need to buy some groceries for home, nothing left to eat.";
+        string Title = "Go to Cinema";
+        string Question = "I've seen the ads about a new movie, maybe it is time to watch that with some popcorn.";
         sm.OpenQuestionArea(Title, Question);
-        currentTarget = GroceryStore;
+        currentTarget = Cinema;
         //sm.OpenSanitizerPanel();
     }
     public void GoToShoppingCenter()
