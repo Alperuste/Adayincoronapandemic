@@ -67,6 +67,11 @@ public class ScreenManager : MonoBehaviour
         SceneManager.LoadScene("Gameplay");
     }
 
+    public void GoToCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     public void OpenQuestionArea(string title, string question)
     {
         panelTextTitle.text = title;
