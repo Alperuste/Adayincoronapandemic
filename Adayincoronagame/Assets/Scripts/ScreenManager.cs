@@ -28,6 +28,11 @@ public class ScreenManager : MonoBehaviour
     public GameObject btnMuteAudio;
     public GameObject btnUnmuteAudio;
 
+    public GameObject panelGoHome;
+    public GameObject panelEndGame;
+
+    public Text panelEndGameText;
+
     private void Awake()
     {
         if (instance != null)
@@ -181,4 +186,25 @@ public class ScreenManager : MonoBehaviour
 
         }
     }
+
+    //Go home panel
+
+    public void OpenGoHomePanel()
+    {
+        panelGoHome.SetActive(true);
+    }
+    public void CloseGoHomePanel()
+    {
+        panelGoHome.SetActive(false);
+    }
+
+    //End game panel
+
+    public void OpenEndGamePanel(int Risk)
+    {
+        string testText = "Today, you had a busy day. You've been in different places around the city and contacted with different people during the day. With all the health precautions you followed, you finished the day with a " + Risk.ToString() + "% infection risk. You didn't get sick today, but what about tomorrow? Please be aware of the health precautions and follow them.  #StayHealthy";
+        panelEndGameText.text = testText;
+        panelEndGame.SetActive(true);
+    }
+
 }
