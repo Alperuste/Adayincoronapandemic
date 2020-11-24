@@ -35,10 +35,10 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (numberOfPlacesVisited == 4)
-        //{
-        //    SwitchToNightMode();
-        //}
+        if (numberOfPlacesVisited == 4)
+        {
+            SwitchToNightMode();
+        }
     }
 
 
@@ -86,16 +86,21 @@ public class GameplayManager : MonoBehaviour
         string Title = "Go to Home";
         string Question = "It's time to go back home, I need some rest!";
 
-        //if (isNightMode)
-        //{
-        //    EndGame();
-        //}
+        if (isNightMode)
+        {
+            EndGame();
+        }
 
         sm.OpenQuestionArea(Title,Question);
+<<<<<<< HEAD
         MoveCharacter(Home);
         sm.OpenWashHandsPanel();
+
+       
+=======
         currentTarget = Home;
         //sm.OpenWashHandsPanel();
+>>>>>>> Alper
     }
     public void GoToUni()
     {
@@ -140,10 +145,15 @@ public class GameplayManager : MonoBehaviour
     }
     public void GoToCinema()
     {
+<<<<<<< HEAD
         numberOfPlacesVisited++;
+
+        string Title = "Go to Grocery Store";
+        string Question = "I need to buy some groceries for home, nothing left to eat.";
+=======
         string Title = "Go to Cinema";
         string Question = "I've seen the ads about a new movie, maybe it is time to watch that with some popcorn.";
-
+>>>>>>> Alper
         sm.OpenQuestionArea(Title, Question);
         currentTarget = Cinema;
         //sm.OpenSanitizerPanel();
@@ -249,19 +259,19 @@ public class GameplayManager : MonoBehaviour
     }
     #endregion
 
-    //// Day/Night Shift
-    //public void SwitchToNightMode()
-    //{
-    //    isNightMode = true;
-    //    Map.material.color = Color.grey; 
-    //}
+    // Day/Night Shift
+    public void SwitchToNightMode()
+    {
+        isNightMode = true;
+        Map.material.color = Color.grey; 
+    }
 
-    //public void EndGame()
-    //{
-    //    Debug.Log("from end game");
+    public void EndGame()
+    {
+        Debug.Log("from end game");
 
-    //    //ScreenManager.instance = null;
-    //    Application.Quit();
-    //}
+        //ScreenManager.instance = null;
+        Application.Quit();
+    }
 
 }
