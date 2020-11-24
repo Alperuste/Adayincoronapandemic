@@ -14,15 +14,13 @@ public class GameplayManager : MonoBehaviour
     public GameObject Cafe;
     public GameObject Bar;
     public GameObject FriendsPlace;
-    public GameObject GroceryStore;
+    public GameObject Cinema;
     public GameObject ShoppingCenter;
     public GameObject KadriorgPark;
     public GameObject OldTown;
-    //night mode
-    public int numberOfPlacesVisited = 0;
-    public SpriteRenderer Map;
-    private bool isNightMode = false;
 
+    [SerializeField]
+    GameObject currentTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -33,20 +31,26 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (numberOfPlacesVisited == 4)
-        {
-            SwitchToNightMode();
-        }
-    }
 
+    }
 
     public void MoveCharacter(GameObject target)
     {
         Vector2 start = player.transform.position;
         Vector2 end = target.transform.position;
+
         player.transform.position = Vector2.Lerp(start, end, 1);
 
         //Play sound effects according to style (Bus/taxi/walk)
+
+        if (currentTarget == Home || currentTarget == FriendsPlace)
+        {
+            sm.OpenWashHandsPanel();
+        }
+        else if (currentTarget == University || currentTarget == Cafe || currentTarget == Bar || currentTarget == Cinema || currentTarget == ShoppingCenter)
+        {
+            sm.OpenSanitizerPanel();
+        }
     }
 
     public void AddCoronaRisk(int risk)
@@ -63,106 +67,79 @@ public class GameplayManager : MonoBehaviour
         sm.ChangeCoronaMeter(CoronaRisk);
     }
 
-
     #region DailyActivities
     // Daily Activities
 
     public void GoToHome()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Home";
         string Question = "It's time to go back home, I need some rest!";
-
-        if (isNightMode)
-        {
-            EndGame();
-        }
-
         sm.OpenQuestionArea(Title,Question);
-        MoveCharacter(Home);
-        sm.OpenWashHandsPanel();
-
-       
+        currentTarget = Home;
+        //sm.OpenWashHandsPanel();
     }
     public void GoToUni()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to University";
         string Question = "It's time to go to university, I need to remember that I'm still a student.";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(University);
-        sm.OpenSanitizerPanel();
+        currentTarget = University;
+        //sm.OpenSanitizerPanel();
     }
     public void GoToCafe()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Cafe";
         string Question = "Who feels that it's coffe o'clock! Maybe I can also get some cookies as well.";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(Cafe);
-        sm.OpenSanitizerPanel();
+        currentTarget = Cafe;
+        //sm.OpenSanitizerPanel();
     }
 
     public void GoToBar()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Bar";
         string Question = "My classmates were talking about a beer pong tournament at this bar, let’s check what is going on.";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(Bar);
-        sm.OpenSanitizerPanel();
+        currentTarget = Bar;
+        //sm.OpenSanitizerPanel();
     }
     public void GoToFriendsPlace()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Friend's Place";
         string Question = "Long time no see my friend!";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(FriendsPlace);
-        sm.OpenWashHandsPanel();
+        currentTarget = FriendsPlace;
+        //sm.OpenWashHandsPanel();
     }
-    public void GoToGroceryStore()
+    public void GoToCinema()
     {
-        numberOfPlacesVisited++;
-
-        string Title = "Go to Grocery Store";
-        string Question = "I need to buy some groceries for home, nothing left to eat.";
+        string Title = "Go to Cinema";
+        string Question = "I've seen the ads about a new movie, maybe it is time to watch that with some popcorn.";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(GroceryStore);
-        sm.OpenSanitizerPanel();
+        currentTarget = Cinema;
+        //sm.OpenSanitizerPanel();
     }
     public void GoToShoppingCenter()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Shopping Center";
         string Question = " Let’s see if they have anything on discount, I don’t need anything but maybe I can buy a new t-shirt!";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(ShoppingCenter);
-        sm.OpenSanitizerPanel();
+        currentTarget = ShoppingCenter;
+        //sm.OpenSanitizerPanel();
     }
     public void GoToKadriorgPark()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Kadriorg Park";
         string Question = "Ahh Kadriorg Park, one of my favorite places to walk around and have some fresh air.";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(KadriorgPark);
+        currentTarget = KadriorgPark;
     }
     public void GoToOldTown()
     {
-        numberOfPlacesVisited++;
-
         string Title = "Go to Old Town";
         string Question = "My dear old town! That's one of the reasons that I choose to study in Tallinn!";
         sm.OpenQuestionArea(Title, Question);
-        MoveCharacter(OldTown);
+        currentTarget = OldTown;
     }
     #endregion
 
@@ -172,6 +149,7 @@ public class GameplayManager : MonoBehaviour
     public void Walk()
     {
         sm.CloseTheQuestionArea();
+        MoveCharacter(currentTarget);
     }
 
     public void PublicTransport()
@@ -189,6 +167,7 @@ public class GameplayManager : MonoBehaviour
         sm.CloseTheQuestionArea();
         int risk = 5;
         AddCoronaRisk(risk);
+        MoveCharacter(currentTarget);
     }
 
     #endregion
@@ -201,6 +180,7 @@ public class GameplayManager : MonoBehaviour
         int risk = -10;
         AddCoronaRisk(risk);
         sm.CloseMaskPanel();
+        MoveCharacter(currentTarget);
     }
 
     public void UseSanitizerYes()
@@ -220,6 +200,7 @@ public class GameplayManager : MonoBehaviour
     public void WearMaskNo()
     {
         sm.CloseMaskPanel();
+        MoveCharacter(currentTarget);
     }
 
     public void UseSanitizerNo()
@@ -234,18 +215,6 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     // Day/Night Shift
-    public void SwitchToNightMode()
-    {
-        isNightMode = true;
-        Map.material.color = Color.grey; 
-    }
 
-    public void EndGame()
-    {
-        Debug.Log("from end game");
-
-        //ScreenManager.instance = null;
-        Application.Quit();
-    }
 
 }
