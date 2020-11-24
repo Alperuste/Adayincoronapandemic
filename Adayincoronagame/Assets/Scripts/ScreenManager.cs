@@ -21,12 +21,6 @@ public class ScreenManager : MonoBehaviour
 
     IEnumerator Testcoroutine;
 
-    public GameObject panelOptions;
-
-    bool isAudioMuted = false;
-
-    public GameObject btnMuteAudio;
-    public GameObject btnUnmuteAudio;
 
     private void Awake()
     {
@@ -43,13 +37,13 @@ public class ScreenManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+     
     }
 
     public void ChangeCoronaMeter(int CoronaRisk)
@@ -69,11 +63,6 @@ public class ScreenManager : MonoBehaviour
     public void GoToIntro()
     {
         SceneManager.LoadScene("Intro");
-    }
-
-    public void GoToCredits()
-    {
-        SceneManager.LoadScene("Credits");
     }
 
     public void OpenQuestionArea(string title, string question)
@@ -140,49 +129,13 @@ public class ScreenManager : MonoBehaviour
     //CoRoutines
     private IEnumerator CROpenWashHandsanel(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime);
-        OpenWashHandsPanel();
+            yield return new WaitForSeconds(waitTime);
+            OpenWashHandsPanel();
     }
 
     private IEnumerator CROpenSanitizerPanel(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime);
-        OpenSanitizerPanel();
-    }
-
-    //Options panel
-
-    public void OpenOptionsPanel()
-    {
-        Time.timeScale = 0;
-        panelOptions.SetActive(true);
-    }
-
-    public void CloseOptionsPanel()
-    {
-        Time.timeScale = 1;
-        panelOptions.SetActive(false);
-    }
-
-    public void MuteTheSounds()
-    {
-        AudioListener.volume = 0;
-        btnMuteAudio.SetActive(false);
-        btnUnmuteAudio.SetActive(true);
-    }
-
-    public void UnMuteTheSounds()
-    {
-        AudioListener.volume = 1;
-        btnMuteAudio.SetActive(true);
-        btnUnmuteAudio.SetActive(false);
-    }
-
-    void ChangeTheSoundImage()
-    {
-        if (isAudioMuted)
-        {
-
-        }
+            yield return new WaitForSeconds(waitTime);
+            OpenSanitizerPanel();
     }
 }
