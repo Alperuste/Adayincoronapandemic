@@ -12,6 +12,7 @@ namespace CoronaGame.Audio
 
         private List<Sound> SFX = new List<Sound>();
         //public Sound BGM;
+        private string allSFX;
 
         private AudioSource BGMPlayer;
 
@@ -19,8 +20,14 @@ namespace CoronaGame.Audio
         {
             if (instance == null)
                 instance = this;
+            else
+            {
+                Destroy(this);
+                return;
+            }
 
             BGMPlayer = gameObject.AddComponent<AudioSource>();
+            DontDestroyOnLoad(this);
         }
 
 
@@ -44,6 +51,7 @@ namespace CoronaGame.Audio
             sfxClip.source.pitch = sfxClip.pitch;
             sfxClip.source.loop = sfxClip.loop;
             sfxClip.source.Play();
+           
         }
 
 
@@ -61,6 +69,11 @@ namespace CoronaGame.Audio
                 sfxClip.source.Stop();
                 Destroy(sfxClip.source);
             }
+        }
+        public void Mute()
+        {
+            BGMPlayer.Stop();
+            EndSFX(allSFX);
         }
 
     }
