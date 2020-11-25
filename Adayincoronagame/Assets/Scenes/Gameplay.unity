@@ -496,6 +496,7 @@ GameObject:
   - component: {fileID: 221795224}
   - component: {fileID: 221795223}
   - component: {fileID: 221795222}
+  - component: {fileID: 221795225}
   m_Layer: 5
   m_Name: btnUNI
   m_TagString: Untagged
@@ -576,6 +577,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 221795225}
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &221795223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +625,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221795220}
   m_CullTransparentMesh: 0
+--- !u!114 &221795225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221795220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603e9abf23d1f4d259c5066ba33bf2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX:
+    source: {fileID: 0}
+    name: 
+    clip: {fileID: 8300000, guid: c982edaddbf714d8f84c43a58e8919c1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!1 &231623479
 GameObject:
   m_ObjectHideFlags: 0
@@ -4186,6 +4217,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042855489}
   m_CullTransparentMesh: 0
+--- !u!1 &1051282547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1051282550}
+  - component: {fileID: 1051282549}
+  - component: {fileID: 1051282548}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1051282548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051282547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca89ab8896ebc4cc48338fec25b71701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGM:
+    source: {fileID: 0}
+    name: 
+    clip: {fileID: 8300000, guid: 3b55c09f7132e4803bf63e11d16a81db, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+--- !u!114 &1051282549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051282547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a7c3f23d17d41ffa6da57f2d6c4b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1051282550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051282547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5832587, y: -0.052092757, z: 90.81206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075070123
 GameObject:
   m_ObjectHideFlags: 0
