@@ -207,4 +207,10 @@ public class ScreenManager : MonoBehaviour
         panelEndGame.SetActive(true);
     }
 
+    //Open intro scene
+    public void GoToIntro()
+    {
+        SceneManager.LoadScene("Intro");
+    }
+
 }
